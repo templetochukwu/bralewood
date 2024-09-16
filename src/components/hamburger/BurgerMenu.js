@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-scroll";
+import { useNavigate } from "react-router-dom";
 import { Turn as Hamburger } from "hamburger-react";
 import "./BurgerMenu.scss";
 
 const BurgerMenu = () => {
   const [isOpen, setOpen] = useState(false);
-
+  const navigate = useNavigate();
+  const handleClick = () => {
+    setOpen(false);
+    navigate("/");
+  };
   return (
     <div>
       <Hamburger
@@ -14,22 +19,58 @@ const BurgerMenu = () => {
         toggle={setOpen}
         direction="right"
         duration={0.8}
-        color="#000"
+        color="#fff"
       />
 
       <div className={`panel ${isOpen ? "open" : "close"}`}>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <Link
+              activeclass="active"
+              smooth={true}
+              spy={true}
+              to="home"
+              offset={-60}
+              onClick={handleClick}
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <NavLink to="/about">About</NavLink>
+            <Link
+              activeclass="active"
+              smooth={true}
+              spy={true}
+              to="about"
+              offset={-60}
+              onClick={handleClick}
+            >
+              About Us
+            </Link>
           </li>
           <li>
-            <NavLink to="/services">Services</NavLink>
+            <Link
+              activeclass="active"
+              smooth={true}
+              spy={true}
+              to="services"
+              offset={-60}
+              onClick={handleClick}
+            >
+              Services
+            </Link>
           </li>
           <li>
-            <NavLink to="/contacts">Contact</NavLink>
+            <Link
+              activeclass="active"
+              smooth={true}
+              spy={true}
+              offset={-60}
+              to="contact"
+              onClick={handleClick}
+            >
+              Contact Us
+            </Link>
           </li>
         </ul>
       </div>
